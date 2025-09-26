@@ -13,12 +13,22 @@ public class ListaSimpleEnlazada< T extends Comparable<T>>  {
         Nodo<T> newNodo = new Nodo(dato);
 
         if(primero == null){
-            primero = newNodo;
+           primero = newNodo;
+           primero.setProximo(primero);
             tam++;
         }else{
-            newNodo.setProximo(primero);
-            primero = newNodo;
-            tam++;
+            
+            Nodo<T> ultimo= primero;
+            While(ultimo.getProximo != primero){
+        ultimo = ultimo.getProximo();
+
+          }
+           
+          newNodo.setProximo(primero);
+          primero = newNodo;
+          ultimo.setProximo(primero);
+          tam++;
+         
         }
     }
 

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class MainList {
     public static void main(String[] args) {
-        ListaSimpleEnlazada<String> lista = new ListaSimpleEnlazada<>();
+        ListaDoblementeEnlazada<String> lista = new ListaDoblementeEnlazada<>();
 
         lista.agregarPrimero("una lista");
         lista.agregarPrimero("desde");
@@ -12,7 +12,7 @@ public class MainList {
         lista.agregarPrimero(" Hola");
         // lista.agregarEnPosicionEspecifica("mclovin",3);
 
-        ListaSimpleEnlazada<Integer> lista2 = new ListaSimpleEnlazada<>();
+        ListaDoblementeEnlazada<Integer> lista2 = new ListaDoblementeEnlazada<>();
 
         lista2.insercionNatural(3);
         lista2.insercionNatural(4);

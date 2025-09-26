@@ -1,11 +1,13 @@
 package co.edu.uniquindio;
 
-public class ListaSimpleEnlazada< T extends Comparable<T>>  {
+public class ListaDoblementeEnlazada< T extends Comparable<T>>  {
     private Nodo<T> primero;
+    private Nodo<T> ultimo;
     private int tam;
 
-    public ListaSimpleEnlazada() {
+    public ListaDoblementeEnlazada() {
         primero = null;
+        ultimo = null;
         tam = 0;
     }
 

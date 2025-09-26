@@ -32,4 +32,8 @@ public class Nodo<T> {
                 ", proximo=" + proximo +
                 '}';
     }
+
+    public void setAnterior(Nodo<T> actual) {
+        this.proximo = actual;
+    }
 }

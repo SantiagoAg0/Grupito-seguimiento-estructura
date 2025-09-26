@@ -50,27 +50,37 @@ public class ListaDoblementeEnlazada< T extends Comparable<T>>  {
             tam++;
         }
     }
-
     public void agregarEnPosicionEspecifica(T dato, int posicion) {
 
-        if (posicion <= 0) { // pequeña excepcion por si se pide un posicio 0 o negativo, agregarlo al inicio
+        if (posicion <= 0) { // si es posición 0 o negativa, agregar al inicio
             agregarPrimero(dato);
             return;
         }
-        if (posicion >= tam) { // pequeña excepcion por si la posicion es igual o mayor al tamaño y agregar al final
+        if (posicion >= tam) { // si es igual o mayor que el tamaño, agregar al final
             agregarUltimo(dato);
             return;
         }
 
         Nodo<T> nuevo = new Nodo<>(dato);
         Nodo<T> actual = primero;
+
         for (int i = 0; i < posicion - 1; i++) {
             actual = actual.getProximo();
         }
-        nuevo.setProximo(actual.getProximo());
+
+        Nodo<T> siguiente = actual.getProximo();
+
+        nuevo.setProximo(siguiente);
+        nuevo.setAnterior(actual);
+
         actual.setProximo(nuevo);
+        if (siguiente != null) {
+            siguiente.setAnterior(nuevo);
+        }
+
         tam++;
     }
+
 
     public boolean esVacia(T datoBusqueda){
         return primero == null && tam == 0;

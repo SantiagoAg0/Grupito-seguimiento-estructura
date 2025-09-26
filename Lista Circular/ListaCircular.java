@@ -1,10 +1,10 @@
 package co.edu.uniquindio;
 
-public class ListaSimpleEnlazada< T extends Comparable<T>>  {
+public class ListaCircular< T extends Comparable<T>>  {
     private Nodo<T> primero;
     private int tam;
 
-    public ListaSimpleEnlazada() {
+    public ListaCircular() {
         primero = null;
         tam = 0;
     }
@@ -28,23 +28,31 @@ public class ListaSimpleEnlazada< T extends Comparable<T>>  {
         do {
             mensaje += actual.getDato() + " ";
             actual = actual.getProximo();
-        }while(actual !=null);
+        }while(actual !=primero);
 
         mensaje += "]";
         System.out.println(mensaje);
     }
 
-    public void agregarUltimo (T dato){
-        Nodo<T> newNodo = new Nodo(dato);
-        if(primero == null){
+    public void agregarUltimo(T dato) {
+        Nodo<T> newNodo = new Nodo<>(dato);
+
+        if (primero == null) {
             primero = newNodo;
+            primero.setProximo(primero);
             tam++;
-        }else{
-            Nodo<T> actual = primero;
-            while(actual.getProximo() != null){
-                actual = actual.getProximo();
+
+        } else {
+            
+            Nodo<T> ultimo= primero;
+
+            while(ultimo.getProximo() != primero){
+                ultimo = ultimo.getProximo();
+
             }
-            actual.setProximo(newNodo);
+            newNodo.setProximo(primero);
+            primero = newNodo;
+            ultimo.setProximo(primero);
             tam++;
         }
     }

@@ -2,7 +2,6 @@ package co.edu.uniquindio;
 
 public class ListaDoblementeEnlazada< T extends Comparable<T>>  {
     private Nodo<T> primero;
-    private Nodo<T> ultimo;
     private int tam;
 
     public ListaDoblementeEnlazada() {
@@ -44,7 +43,7 @@ primero.setAnterior(newNodo);
             primero = newNodo;
             tam++;
         }else{
-            Nodo<T> actual = ultimo;
+            Nodo<T> actual = primero;
             while(actual.getProximo() != null){
                 actual = actual.getProximo();
             }

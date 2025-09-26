@@ -16,9 +16,11 @@ public class ListaDoblementeEnlazada< T extends Comparable<T>>  {
 
         if(primero == null){
             primero = newNodo;
+            último = newNodo;
             tam++;
         }else{
             newNodo.setProximo(primero);
+primero.setAnterior(newNodo);
             primero = newNodo;
             tam++;
         }

@@ -44,11 +44,12 @@ primero.setAnterior(newNodo);
             primero = newNodo;
             tam++;
         }else{
-            Nodo<T> actual = primero;
+            Nodo<T> actual = ultimo;
             while(actual.getProximo() != null){
                 actual = actual.getProximo();
             }
             actual.setProximo(newNodo);
+            newNodo.setAnterior(actual);
             tam++;
         }
     }

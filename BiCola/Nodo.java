@@ -2,7 +2,8 @@ package co.edu.uniquindio;
 
 public class Nodo<T> {
     private T dato;
-    private Nodo<T> proximo; //Referencia al siguiente elemento
+    private Nodo<T> proximo;
+    prívate Nodo<T> anterior; //Referencia al siguiente elemento
 
     public Nodo(T dato) {
         this.dato = dato;
@@ -25,15 +26,21 @@ public class Nodo<T> {
         this.proximo = proximo;
     }
 
+    public Nodo<T> getAnterior() {
+        return anterior;
+    }
+
+    public void setAnterior(Nodo<T> anterior) {
+        this.anterior = anterior;
+    }
+
     @Override
     public String toString() {
         return "Nodo{" +
                 "dato=" + dato +
-                ", proximo=" + proximo +
+                ", proximo=" + proximo + ", anterior=" + anterior +
                 '}';
     }
 
-    public void setAnterior(Nodo<T> actual) {
-        this.proximo = actual;
-    }
+
 }

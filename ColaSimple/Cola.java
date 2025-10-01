@@ -49,20 +49,22 @@ public class Cola<T> {
         fin = newNodo;
         tam++;
     }
-        public T desencolar() {
-        if (inicio == null) {
-            return null;
-        }
+    
+    public void desencolar (){
 
-        T dato = inicio.getDato();
-        inicio = inicio.getProximo();
+       if (inicio == null){
+         return null;
+       }
+       
+       Nodo<T> actual = inicio;
+       
+       inicio = inicio.getProximo();
+       tam--;
+       
+       if (inicio == null){
+       fin == null;
+       }
 
-        if (inicio == null) {
-            
-            fin = null;
-        }
-
-        tam--;
-        return dato;
-    }
+      
+     }
 }

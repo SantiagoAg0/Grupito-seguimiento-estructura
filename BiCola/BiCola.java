@@ -52,7 +52,7 @@ public class Bicola<T> {
             frente = null;
             fin = null;
         } else {
-            frente = frente.getSiguiente();
+            frente = frente.getProximo();
             frente.setAnterior(null);
         }
         tam--;

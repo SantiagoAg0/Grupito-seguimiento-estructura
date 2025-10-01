@@ -2,44 +2,87 @@ package co.edu.uniquindio.BiCola;
 
 import co.edu.uniquindio.ColaSimple.Nodo;
 
-public class BiCola<T> {
 
-    private Nodo<T> inicio;
+public class Bicola<T> {
+    private Nodo<T> frente;
     private Nodo<T> fin;
     private int tam;
-
-    public BiCola() {
-        inicio = null;
-        fin = null;
-        tam = 0;
+    
+    public Bicola() {
+        this.frente = null;
+        this.fin = null;
+        this.tam = 0;
     }
-
-    // Getters y Setters
-    public Nodo<T> getInicio() {
-        return inicio;
+    
+    // Agregar nodo al inicio
+    public void agregarAlInicio(Nodo<T> nuevoNodo) {
+        if (estaVacia()) {
+            frente = nuevoNodo;
+            fin = nuevoNodo;
+        } else {
+            nuevoNodo.setProximo(frente);
+            frente.setAnterior(nuevoNodo);
+            frente = nuevoNodo;
+        }
+        tam++;
     }
-
-    public void setInicio(Nodo<T> inicio) {
-        this.inicio = inicio;
+    
+    // Agregar nodo al final
+    public void agregarAlFin(Nodo<T> nuevoNodo) {
+        if (estaVacia()) {
+            frente = nuevoNodo;
+            fin = nuevoNodo;
+        } else {
+            fin.setProximo(nuevoNodo);
+            nuevoNodo.setAnterior(fin);
+            fin = nuevoNodo;
+        }
+        tam++;
     }
-
-    public Nodo<T> getFin() {
-        return fin;
+    
+    // Eliminar nodo del inicio
+    public Nodo<T> eliminarDelInicio() {
+        if (estaVacia()) {
+            return null;
+        }
+        
+        Nodo<T> nodoEliminado = frente;
+        
+        if (frente == fin) {
+            frente = null;
+            fin = null;
+        } else {
+            frente = frente.getSiguiente();
+            frente.setAnterior(null);
+        }
+        tam--;
+        return nodoEliminado;
     }
-
-    public void setFin(Nodo<T> fin) {
-        this.fin = fin;
+    
+    // Eliminar nodo del final
+    public Nodo<T> eliminarDelFin() {
+        if (estaVacia()) {
+            return null;
+        }
+        
+        Nodo<T> nodoEliminado = fin;
+        
+        if (frente == fin) {
+            frente = null;
+            fin = null;
+        } else {
+            fin = fin.getAnterior();
+            fin.setProximo(null);
+        }
+        tam--;
+        return nodoEliminado;
     }
-
-    public int getTam() {
+    
+    public boolean estaVacia() {
+        return frente == null;
+    }
+    
+    public int tamaño() {
         return tam;
     }
-
-    public void setTam(int tam) {
-        this.tam = tam;
-    }
-
-    public boolean estaVacia() {
-        return tam == 0;
-    }
-
+}

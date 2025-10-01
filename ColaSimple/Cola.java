@@ -43,12 +43,17 @@ public class Cola<T> {
        If(inicio == null){
 
        inicio = newNodo;
+       fin = newNodo;
        tam++;
 
        }
-       inicio = newNodo;
+
+       fin.setProximo(newNodo);
+       fin = newNodo;
+       tam++;
 
        }
+
 
 
 }

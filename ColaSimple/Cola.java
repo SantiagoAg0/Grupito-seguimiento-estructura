@@ -36,25 +36,17 @@ public class Cola<T> {
         this.tam = tam;
     }
 
-    Public void encolar( T dato){
+    public void encolar( T dato){
+        Nodo<T> newNodo = new Nodo<>(dato);
+        if(inicio == null){
 
-       Nodo<T> newNodo = new Nodo<>(dato);
+           inicio = newNodo;
+           fin = newNodo;
+           tam++;
+        }
 
-       If(inicio == null){
-
-       inicio = newNodo;
-       fin = newNodo;
-       tam++;
-
-       }
-
-       fin.setProximo(newNodo);
-       fin = newNodo;
-       tam++;
-
-       }
-
-
-
+        fin.setProximo(newNodo);
+        fin = newNodo;
+        tam++;
+    }
 }
-  

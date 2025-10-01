@@ -35,4 +35,21 @@ public class Cola<T> {
     public void setTam(int tam) {
         this.tam = tam;
     }
+
+    Public void encolar( T dato){
+
+       Nodo<T> newNodo = new Nodo<>(dato);
+
+       If(inicio == null){
+
+       inicio = newNodo;
+       tam++;
+
+       }
+       inicio = newNodo;
+
+       }
+
+
 }
+  

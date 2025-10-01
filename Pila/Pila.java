@@ -1,32 +1,42 @@
-package Pila;
+package co.edu.uniquindio;
 
 public class Pila<T> {
-    private Nodo<T> inicio;
-    private Nodo<T> fin;
+    private Nodo<T> cima;  
+    private int tam;       
 
-    private int tam;
-
-    public Pila (){
-        inicio = null;
-        fin = null;
-        this.tam = 0;
+    public Pila() {
+        cima = null;
+        tam = 0;
     }
 
-    public enpilar (T dato){
-        Nodo<T> newNodo = new Nodo<>(dato);
-        if(inicio ==null){
-            inicio = newNodo;
-            fin = newNodo;
-            tam+++;
-        }
-
-        inicio.setAnterior(newNodo);
-        inicio = newNodo;
+    public void empilar(T dato) {
+        Nodo<T> nuevo = new Nodo<>(dato);
+        nuevo.setProximo(cima); 
+        cima = nuevo;         
         tam++;
     }
 
-    public desenpilar(T dato){
-        
+    public T desempilar() {
+        if (estaVacia()) {
+            return null; 
+        }
+
+        T dato = cima.getDato();  
+        cima = cima.getProximo();  
+        tam--;
+
+        return dato;
     }
-    
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Pila: ");
+        Nodo<T> actual = cima;
+        while (actual != null) {
+            sb.append(actual.getDato()).append(" -> ");
+            actual = actual.getProximo();
+        }
+        sb.append("null");
+        return sb.toString();
+    }
 }

@@ -1,10 +1,14 @@
-package co.edu.uniquindio;
+package co.edu.uniquindio.Listasimplementeenlazada;
 
-public class ListaCircular< T extends Comparable<T>>  {
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+public class ListaSimpleEnlazada< T extends Comparable<T>>  {
     private Nodo<T> primero;
     private int tam;
 
-    public ListaCircular() {
+    public ListaSimpleEnlazada() {
         primero = null;
         tam = 0;
     }
@@ -13,22 +17,12 @@ public class ListaCircular< T extends Comparable<T>>  {
         Nodo<T> newNodo = new Nodo(dato);
 
         if(primero == null){
-           primero = newNodo;
-           primero.setProximo(primero);
+            primero = newNodo;
             tam++;
         }else{
-            
-            Nodo<T> ultimo= primero;
-            While(ultimo.getProximo != primero){
-        ultimo = ultimo.getProximo();
-
-          }
-           
-          newNodo.setProximo(primero);
-          primero = newNodo;
-          ultimo.setProximo(primero);
-          tam++;
-         
+            newNodo.setProximo(primero);
+            primero = newNodo;
+            tam++;
         }
     }
 
@@ -38,31 +32,23 @@ public class ListaCircular< T extends Comparable<T>>  {
         do {
             mensaje += actual.getDato() + " ";
             actual = actual.getProximo();
-        }while(actual !=primero);
+        }while(actual !=null);
 
         mensaje += "]";
         System.out.println(mensaje);
     }
 
-    public void agregarUltimo(T dato) {
-        Nodo<T> newNodo = new Nodo<>(dato);
-
-        if (primero == null) {
+    public void agregarUltimo (T dato){
+        Nodo<T> newNodo = new Nodo(dato);
+        if(primero == null){
             primero = newNodo;
-            primero.setProximo(primero);
             tam++;
-
-        } else {
-            
-            Nodo<T> ultimo= primero;
-
-            while(ultimo.getProximo() != primero){
-                ultimo = ultimo.getProximo();
-
+        }else{
+            Nodo<T> actual = primero;
+            while(actual.getProximo() != null){
+                actual = actual.getProximo();
             }
-            newNodo.setProximo(primero);
-            primero = newNodo;
-            ultimo.setProximo(primero);
+            actual.setProximo(newNodo);
             tam++;
         }
     }
@@ -192,6 +178,35 @@ public class ListaCircular< T extends Comparable<T>>  {
         actual.setProximo(actual.getProximo().getProximo());
         tam--;
         return true;
+    }
+
+    private void ordenarListaSimpleEnlazada(Comparator<T> comp) {
+        List<T> datos = new ArrayList<>();
+        Nodo<T> actual = primero;
+        while (actual != null) {
+            datos.add(actual.getDato());
+            actual = actual.getProximo();
+        }
+        datos.sort(comp);
+
+        // Volver a insertar en los nodos
+        actual = primero;
+        for (T dato : datos) {
+            actual.setDato(dato);
+            actual = actual.getProximo();
+        }
+    }
+
+    public void ordenarNatural() {
+        ordenarListaSimpleEnlazada(Comparator.naturalOrder());
+    }
+
+    public void ordenarAscendente() {
+        ordenarListaSimpleEnlazada(Comparator.naturalOrder());
+    }
+
+    public void ordenarDescendente() {
+        ordenarListaSimpleEnlazada(Comparator.reverseOrder());
     }
 
 

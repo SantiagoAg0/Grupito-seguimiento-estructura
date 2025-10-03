@@ -1,9 +1,9 @@
-package co.edu.uniquindio;
+package co.edu.uniquindio.BiCola;
 
 public class Nodo<T> {
     private T dato;
     private Nodo<T> proximo;
-    prívate Nodo<T> anterior; //Referencia al siguiente elemento
+    private Nodo<T> anterior; //Referencia al siguiente elemento
 
     public Nodo(T dato) {
         this.dato = dato;

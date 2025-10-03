@@ -2,13 +2,17 @@ package co.edu.uniquindio.BiCola;
 
 import co.edu.uniquindio.ColaSimple.Nodo;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
-public class Bicola<T> {
+
+public class BiCola<T extends Comparable<? super T>> {
     private Nodo<T> frente;
     private Nodo<T> fin;
     private int tam;
     
-    public Bicola() {
+    public BiCola() {
         this.frente = null;
         this.fin = null;
         this.tam = 0;
@@ -84,5 +88,33 @@ public class Bicola<T> {
     
     public int tamaño() {
         return tam;
+    }
+
+    private void ordenarBicola(Comparator<T> comp) {
+        List<T> datos = new ArrayList<>();
+        Nodo<T> actual = frente;
+        while (actual != null) {
+            datos.add(actual.getDato());
+            actual = actual.getProximo();
+        }
+        datos.sort(comp);
+
+        actual = frente;
+        for (T dato : datos) {
+            actual.setDato(dato);
+            actual = actual.getProximo();
+        }
+    }
+
+    public void ordenarNatural() {
+        ordenarBicola(Comparator.naturalOrder());
+    }
+
+    public void ordenarAscendente() {
+        ordenarBicola(Comparator.naturalOrder());
+    }
+
+    public void ordenarDescendente() {
+        ordenarBicola(Comparator.reverseOrder());
     }
 }

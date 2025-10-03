@@ -1,7 +1,12 @@
-package co.edu.uniquindio;
+package co.edu.uniquindio.Listadoblementeenlazada;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class ListaDoblementeEnlazada< T extends Comparable<T>>  {
     private Nodo<T> primero;
+    private Nodo<T> ultimo;
     private int tam;
 
     public ListaDoblementeEnlazada() {
@@ -15,7 +20,7 @@ public class ListaDoblementeEnlazada< T extends Comparable<T>>  {
 
         if(primero == null){
             primero = newNodo;
-            último = newNodo;
+            ultimo = newNodo;
             tam++;
         }else{
             newNodo.setProximo(primero);
@@ -188,6 +193,34 @@ primero.setAnterior(newNodo);
         actual.setProximo(actual.getProximo().getProximo());
         tam--;
         return true;
+    }
+
+    private void ordenarListaDoblementeEnlazada(Comparator<T> comp) {
+        List<T> datos = new ArrayList<>();
+        Nodo<T> actual = primero;
+        while (actual != null) {
+            datos.add(actual.getDato());
+            actual = actual.getProximo();
+        }
+        datos.sort(comp);
+
+        actual = primero;
+        for (T dato : datos) {
+            actual.setDato(dato);
+            actual = actual.getProximo();
+        }
+    }
+
+    public void ordenarNatural() {
+        ordenarListaDoblementeEnlazada(Comparator.naturalOrder());
+    }
+
+    public void ordenarAscendente() {
+        ordenarListaDoblementeEnlazada(Comparator.naturalOrder());
+    }
+
+    public void ordenarDescendente() {
+        ordenarListaDoblementeEnlazada(Comparator.reverseOrder());
     }
 
 

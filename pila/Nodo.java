@@ -1,4 +1,4 @@
-package co.edu.uniquindio;
+package co.edu.uniquindio.pila;
 
 public class Nodo<T> {
     private T dato;

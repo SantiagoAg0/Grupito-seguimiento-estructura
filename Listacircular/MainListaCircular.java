@@ -1,8 +1,8 @@
-package co.edu.uniquindio;
+package co.edu.uniquindio.Listacircular;
 
-import java.util.LinkedList;
+import co.edu.uniquindio.ListaSimpleEnlazada;
 
-public class MainList {
+public class MainListaCircular {
     public static void main(String[] args) {
         ListaSimpleEnlazada<String> lista = new ListaSimpleEnlazada<>();
 

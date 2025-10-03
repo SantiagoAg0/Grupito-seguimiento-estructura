@@ -1,4 +1,4 @@
-package co.edu.uniquindio;
+package co.edu.uniquindio.Listasimplementeenlazada;
 
 public class Nodo<T> {
     private T dato;
